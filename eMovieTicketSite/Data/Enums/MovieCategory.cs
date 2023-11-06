@@ -9,6 +9,7 @@
         Anime,
         Fantasy,
         Horror,
-        Documentary
+        Documentary,
+        Cartoon
     }
 }
