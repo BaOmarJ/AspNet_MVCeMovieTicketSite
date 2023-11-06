@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using eMovieTicketSite.Data;
+using eMovieTicketSite.Data.Enums;
 
 namespace eMovieTicketSite.Models
 {
