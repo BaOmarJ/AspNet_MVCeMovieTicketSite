@@ -17,7 +17,7 @@ namespace eMovieTicketSite.Controllers
             // get the data from dbcontext: Synchronously
             var allActors = _context.Actors.ToList();
             // next pass the data to view
-            return View();
+            return View(allActors);
         }
     }
 }
