@@ -17,7 +17,7 @@ namespace eMovieTicketSite.Controllers
             // get the data from dbcontext: Asynchronously
             var allCinemas = await _context.Cinemas.ToListAsync();
             // next pass the data to view
-            return View();
+            return View(allCinemas);
         }
     }
 }

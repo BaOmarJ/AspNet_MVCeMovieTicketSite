@@ -16,9 +16,9 @@ namespace eMovieTicketSite.Controllers
         public async Task<IActionResult> Index()
         {
             // get the data from dbcontext: Asynchronously
-            var allMovies = await _context.Movies.ToListAsync();
+            var allMovies = await _context.Movies.Include(n=>n.Cinema).OrderBy(n=>n.Name).ToListAsync();
             // next pass the data to view
-            return View();
+            return View(allMovies);
         }
     }
 }
