@@ -20,5 +20,9 @@ namespace eMovieTicketSite.Controllers
             // next pass the data to view
             return View(allActors);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
