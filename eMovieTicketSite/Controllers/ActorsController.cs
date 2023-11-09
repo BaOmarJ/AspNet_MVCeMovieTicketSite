@@ -1,21 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using eMovieTicketSite.Data;
+using eMovieTicketSite.Data.Services;
 
 namespace eMovieTicketSite.Controllers
 {
     public class ActorsController : Controller
     {
-        // define app db context for database operations
-        private readonly AppDbContext _context;
+        // service interface for database operations
+        private readonly IActorsService _service;
         // create a contronstructor for dependency injection to be able to use dbcontext
-        public ActorsController(AppDbContext context)
+        public ActorsController(IActorsService service)
         {
-            _context = context;
+            _service = service;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // get the data from dbcontext: Synchronously
-            var allActors = _context.Actors.ToList();
+            var allActors = await _service.GetAll();
             // next pass the data to view
             return View(allActors);
         }
