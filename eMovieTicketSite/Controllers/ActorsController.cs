@@ -26,7 +26,7 @@ namespace eMovieTicketSite.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("FullName, ProfilePicturURL, Bio")]Actor actor)
+        public async Task<IActionResult> Create([Bind("ProfilePictureURL,FullName, Bio")]Actor actor)
         {
             if(!ModelState.IsValid)
             {
