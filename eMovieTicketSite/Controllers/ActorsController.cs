@@ -17,7 +17,7 @@ namespace eMovieTicketSite.Controllers
         public async Task<IActionResult> Index()
         {
             // get the data from dbcontext: Synchronously
-            var allActors = await _service.GetAll();
+            var allActors = await _service.GetAllAsync();
             // next pass the data to view
             return View(allActors);
         }
@@ -32,8 +32,19 @@ namespace eMovieTicketSite.Controllers
             {
                 return View(actor);
             }
-            _service.Add(actor);
+            await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
+        }
+        // Get: Actors/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            // Check if actor details is null
+            if(actorDetails == null) 
+            {
+                return View("empty");
+            }
+            return View(actorDetails);
         }
     }
 }

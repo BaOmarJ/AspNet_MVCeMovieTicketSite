@@ -6,10 +6,10 @@ namespace eMovieTicketSite.Data.Services
     {
         // define return types and method names that will be implemented by services.
         // Get all actors from db
-        Task<IEnumerable<Actor>> GetAll();
-        Actor GetById(int id); // get a single actor
+        Task<IEnumerable<Actor>> GetAllAsync();
+        Task<Actor> GetByIdAsync(int id); // get a single actor
         // Add data to db
-        void Add(Actor actor);
+        Task AddAsync(Actor actor);
         // Update data in db
         Actor Update(int id, Actor actor);
         // delete from db
