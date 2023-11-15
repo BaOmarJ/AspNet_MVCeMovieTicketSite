@@ -78,14 +78,16 @@ namespace eMovieTicketSite.Controllers
             }
             return View(actorDetails);
         }
-        [HttpPost]
-        public async Task<IActionResult> Delete(int id, [Bind("Id, ProfilePictureURL,FullName, Bio")] Actor actor)
+        [HttpPost,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int id)
         {
-            if (!ModelState.IsValid)
+            var actorDetails = await _service.GetByIdAsync(id);
+            // Check if actor details is null
+            if (actorDetails == null)
             {
-                return View(actor);
+                return View("Not found");
             }
-            await _service.UpdateAsync(id, actor);
+            await _service.Delete(id);
             return RedirectToAction(nameof(Index));
         }
     }
