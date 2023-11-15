@@ -46,6 +46,7 @@ namespace eMovieTicketSite.Controllers
             }
             return View(actorDetails);
         }
+        // Get: Actors/Edit/1
         public async Task<IActionResult> Edit(int id)
         {
             var actorDetails = await _service.GetByIdAsync(id);
@@ -58,6 +59,27 @@ namespace eMovieTicketSite.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("Id, ProfilePictureURL,FullName, Bio")]Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
+        }
+        // Get: Actors/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            // Check if actor details is null
+            if (actorDetails == null)
+            {
+                return View("Not found");
+            }
+            return View(actorDetails);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, [Bind("Id, ProfilePictureURL,FullName, Bio")] Actor actor)
         {
             if (!ModelState.IsValid)
             {
