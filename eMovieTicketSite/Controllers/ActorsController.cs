@@ -87,7 +87,7 @@ namespace eMovieTicketSite.Controllers
             {
                 return View("Not found");
             }
-            await _service.Delete(id);
+            await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
     }
