@@ -11,7 +11,7 @@ namespace eMovieTicketSite.Data.Services
         // Add data to db
         Task AddAsync(Actor actor);
         // Update data in db
-        Actor Update(int id, Actor actor);
+        Task<Actor> UpdateAsync(int id, Actor actor);
         // delete from db
         void Delete(int id);
     }

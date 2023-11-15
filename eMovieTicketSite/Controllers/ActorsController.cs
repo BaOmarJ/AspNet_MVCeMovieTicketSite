@@ -42,9 +42,29 @@ namespace eMovieTicketSite.Controllers
             // Check if actor details is null
             if(actorDetails == null) 
             {
-                return View("empty");
+                return View("Not Found");
             }
             return View(actorDetails);
+        }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            // Check if actor details is null
+            if (actorDetails == null)
+            {
+                return View("Not found");
+            }
+            return View(actorDetails);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id, ProfilePictureURL,FullName, Bio")]Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
